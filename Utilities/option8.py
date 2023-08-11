@@ -13,7 +13,7 @@ def run():
     invTotal = []
 
     # We open the Expense Records, save all relevant date, then close it
-    expenseFile = open("../DataFiles/ExpenseRecords.dat", 'r')
+    expenseFile = open("DataFiles/ExpenseRecords.dat", 'r')
     for line in expenseFile:
         record = line.split(",")
         # print(record[0]+" "+invNum)
@@ -40,7 +40,7 @@ def run():
         # We compare primary keys until we get a hit. 
         # We then save the result and continue for looking for the rest of the parts.
         for index in range(len(itemID)):
-            partsFile = open("../DataFiles/PartsInventory.dat", "r")
+            partsFile = open("DataFiles/PartsInventory.dat", "r")
             for line in partsFile:
                 record = line.split(",")
                 if itemID[index] == record[0]:
@@ -48,7 +48,7 @@ def run():
                     partsFile.close()
                     break
         # With all the information on hand, we can start to generate the report
-
+        print(f"")
         print(f"               HAB TAXI SERVICES")
         print(f"               INVOICE BREAKDOWN")
         print(f"===============================================")
@@ -72,5 +72,6 @@ def run():
         print(f"-----------------------------------------------")
         print(f"Total Expenditure:                 {formattedSumInvTotal:>12s}")
         print(f"===============================================")
-
-run()
+        print("")
+        print("")
+        input("Press the Enter Key to Continue...")

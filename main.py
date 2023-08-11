@@ -3,8 +3,10 @@
 
 import math
 import datetime
-
+import Utilities.option8 as option8
 # Main program.
+
+exitFlag = False
 while True:
     print()
     print("        HAB Taxi Services")
@@ -18,7 +20,7 @@ while True:
     print("5. Record Employee Payment.")
     print("6. Print Company Profit Listing.")
     print("7. Print Driver Financial Listing.")
-    print("8. Your report –add description here")
+    print("8. Generate Expense Invoice by Expense ID")
     print("9. Quit Program. ")
 
     while True:
@@ -30,7 +32,11 @@ while True:
             if Choice < 1 or Choice > 9:
                 print("Error - Choice must be between 1 and 9.")
             else:
+                if Choice == 8:
+                    option8.run()
+                elif Choice == 9:
+                    exitFlag=True
                 break
                 
-
-
+    if exitFlag == True:
+        break
