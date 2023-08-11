@@ -1,4 +1,4 @@
-def expenseByID():
+def run():
     # We take the user input
     invNum = input("Please enter the ID of the expense you would like a report on: ") 
     # Information retreived by reading Expense Records
@@ -8,11 +8,9 @@ def expenseByID():
     numItem = []
     totItemCost = []
     subTotal = []
+    formattedSubTotal = []
     hst = []
     invTotal = []
-
-    # Information retreived by looking up itemId on Pats Inventory
-    itemDesc = []
 
     # We open the Expense Records, save all relevant date, then close it
     expenseFile = open("../DataFiles/ExpenseRecords.dat", 'r')
@@ -26,6 +24,7 @@ def expenseByID():
             numItem.append(record[4].strip())
             totItemCost.append(float(record[5]))
             subTotal.append(float(record[6]))
+            formattedSubTotal.append(f"${float(record[6]):,.2f}")
             hst.append(float(record[7]))
             invTotal.append(float(record[8]))
     expenseFile.close()
@@ -35,8 +34,43 @@ def expenseByID():
         return
     # else, we continue
     else:
-        print(driverNum, itemID, numItem)
+        # Information to be retreived by looking up itemId on Pats Inventory
+        itemDesc = [None] * len(itemID)
 
+        # We compare primary keys until we get a hit. 
+        # We then save the result and continue for looking for the rest of the parts.
+        for index in range(len(itemID)):
+            partsFile = open("../DataFiles/PartsInventory.dat", "r")
+            for line in partsFile:
+                record = line.split(",")
+                if itemID[index] == record[0]:
+                    itemDesc[index] = record[1].strip()
+                    partsFile.close()
+                    break
+        # With all the information on hand, we can start to generate the report
 
+        print(f"               HAB TAXI SERVICES")
+        print(f"               INVOICE BREAKDOWN")
+        print(f"===============================================")
+        print(f"Invoice Date: {invDate}")
+        print(f"Invoice ID: {invNum}                 Driver ID: {driverNum}")
+        print(f"===============================================")
+        sumHST = 0
+        sumInvTotal = 0
+        sumSubTotal = 0
+        for index in range(len(itemID)):
+            print(f"{itemDesc[index] + ' X ' + numItem[index]:35s} {formattedSubTotal[index]:>11s}")
+            sumInvTotal += invTotal[index]
+            sumHST += hst[index]
+            sumSubTotal += subTotal[index]
+        formattedSumHST = f"${sumHST:,.2f}"
+        formattedSumInvTotal = f"${sumInvTotal:,.2f}"
+        formattedSumSubTotal = f"${sumSubTotal:,.2f}"
+        print(f"-----------------------------------------------")
+        print(f"SubTotal                           {formattedSumSubTotal:>12s}")
+        print(f"HST                                 {formattedSumHST:>11s}")
+        print(f"-----------------------------------------------")
+        print(f"Total Expenditure:                 {formattedSumInvTotal:>12s}")
+        print(f"===============================================")
 
-expenseByID()
+run()
