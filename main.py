@@ -4,6 +4,7 @@
 import math
 import datetime
 import Utilities.option8 as option8
+import Utilities.option1 as option1
 # Main program.
 
 exitFlag = False
@@ -32,7 +33,9 @@ while True:
             if Choice < 1 or Choice > 9:
                 print("Error - Choice must be between 1 and 9.")
             else:
-                if Choice == 8:
+                if Choice == 1:
+                    option1.enterEmpl()
+                elif Choice == 8:
                     option8.run()
                 elif Choice == 9:
                     exitFlag=True
