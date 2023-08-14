@@ -1,4 +1,3 @@
-itemID, itemDescript, itemCost, itemsOnHand, carID
 011, Winter Tire, 119.99, 24, -
 012, Tire, 89.99, 16, -
 013, Car Engine, 3500.00, 1, -

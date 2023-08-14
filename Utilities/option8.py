@@ -58,11 +58,13 @@ def run():
         sumHST = 0
         sumInvTotal = 0
         sumSubTotal = 0
+        # I both take a sum of each total, and print it in a formatted way
         for index in range(len(itemID)):
             print(f"{itemDesc[index] + ' X ' + numItem[index]:35s} {formattedSubTotal[index]:>11s}")
             sumInvTotal += invTotal[index]
             sumHST += hst[index]
             sumSubTotal += subTotal[index]
+        # I format some final values, then print the final part of the report
         formattedSumHST = f"${sumHST:,.2f}"
         formattedSumInvTotal = f"${sumInvTotal:,.2f}"
         formattedSumSubTotal = f"${sumSubTotal:,.2f}"
@@ -74,4 +76,5 @@ def run():
         print(f"===============================================")
         print("")
         print("")
+        # I prompt the user to continue
         input("Press the Enter Key to Continue...")
