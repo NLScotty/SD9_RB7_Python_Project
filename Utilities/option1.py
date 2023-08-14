@@ -60,8 +60,11 @@ def enterEmpl():
     f.write(f'{insurPolNum}, ')
     f.write(f'{carOwnRent}, ')
     f.write(f'{str(balDue)}, ')
-    f.write(f'{emplPosition}, ')
-    f.write(f'{carId}\n')
+    if carOwnRent == 'Own':
+        f.write(f'{emplPosition}\n')
+    else:
+        f.write(f'{emplPosition}, ')
+        f.write(f'{carId}\n')
     f.close()
 
     time.sleep(2)
