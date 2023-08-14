@@ -5,6 +5,8 @@ import math
 import datetime
 import Utilities.option8 as option8
 import Utilities.option1 as option1
+import Utilities.option7 as option7
+
 # Main program.
 
 exitFlag = False
@@ -35,6 +37,8 @@ while True:
             else:
                 if Choice == 1:
                     option1.enterEmpl()
+                elif Choice == 7:
+                    option7.driverReport()
                 elif Choice == 8:
                     option8.run()
                 elif Choice == 9:
